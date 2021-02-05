@@ -43,7 +43,7 @@ with open(args.gold_config_file) as a:
 app = Application(loop=asyncio.get_event_loop())
 app['static_root_url'] = '/static'
 session_setup(app, ECS(os.urandom(32), max_age=1000000))  # Encrypted cookies
-# session_setup(app, SimpleCookieStorage(max_age=1000000))  # Simple cookies DEBUG ONLY
+ session_setup(app, SimpleCookieStorage(max_age=1000000))  # Simple cookies DEBUG ONLY
 jinja_setup(app, loader=FileSystemLoader(os.getcwd() + '/website/templates'))
 app.router.add_routes(website.frontend_routes)
 app.router.add_routes(website.backend_routes)
